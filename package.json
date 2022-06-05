@@ -1,0 +1,23 @@
+{
+  "name": "github-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reactola/github-game.git"
+  },
+  "author": "Yousef Meska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reactola/github-game/issues"
+  },
+  "homepage": "https://github.com/Reactola/github-game#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
