@@ -1,0 +1,37 @@
+html, body, #app {
+    margin: 0;
+    height: 0;
+    width: 100%;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-clear{
+    border: none;
+    background: transparent;
+}
+
+.nav-link {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit
+}
