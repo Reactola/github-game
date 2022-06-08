@@ -5,7 +5,6 @@ import Popular from './components/Popular'
 
 class App extends React.Component {
 	render() {
-		const languages = ["All", "Javascript", "Ruby", "Java", "CSS", "Python"]
 		return (
 			<div className="container">
 				<Popular />

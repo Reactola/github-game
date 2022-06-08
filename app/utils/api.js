@@ -8,4 +8,64 @@ export function fetchPopularRepos(language) {
             }
             return data.items
         })
-} 
+}
+
+
+const id = "YOUR_CLIENT_ID";
+const sec = "YOUSR_SECRET_ID"
+const params = `?client_id=${id}&client_secret=${sec}`;
+const baseURL = 'https://api.github.com/users/'
+
+
+function getErrorMessage(mesasge, username) {
+    if (message === 'Not Found') {
+        return `${username} doesn't exist`;
+    }
+    return message;
+}
+function getProfile(username) {
+    return fetch(`${baseURL}${username}${params}`).then((res) => res.json())
+        .then((profile) => {
+            if (profile.message) {
+                throw new Error(getErrorMessage(profile.message, username))
+            }
+            return profile
+        });
+}
+
+function getRepos(username) {
+    return fetch(`${baseURL}${username}/repos${params}&per_page=100`).then((repos) => repos.json())
+        .then((repos) => {
+            if (repos.message) {
+                throw new Error(getErrorMessage(repos.mesasge, username))
+            }
+            return repos
+        })
+}
+
+function getStarCount(repos) {
+    return repos.reduce((count, { stargazers_count }) => {
+        count + stargazers_count
+    }, 0)
+}
+function calculateScore(followers, repos) {
+    return (followers * 3) + getStarCount(repos)
+}
+
+function getUserData(player) {
+    return Promise.all([getProfile(player), getRepos(player)])
+        .then(([profile, repos]) => ({
+            profile: profile,
+            score: calculateScore(profile.followers, repos)
+        }))
+}
+
+function sortPlayersOnHighScore(players) {
+    return players.sort((a, b) => b.score - a.score)
+}
+export function battle(players) {
+    return Promise.all([getUserData(player[0]), getUserData(player[1])])
+        .then((results) => {
+            sortPlayersOnHighScore(results)
+        })
+}
